@@ -1,122 +1,107 @@
 #!/bin/bash
 
-# Universal CyberSec Tools Installer
-# This script installs common cybersecurity and penetration testing tools on any Linux distribution.
+# Enhanced CyberSec Tools Installer
+# Installs common cybersecurity tools across Linux distributions
 # Run as root or with sudo privileges.
 
 set -e
 
-LOGFILE="cybersec_install.log"
-exec > >(tee -a $LOGFILE) 2>&1
-
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root or use sudo."
-  exit 1
-fi
-
-# List of tools commonly found in Kali Linux
-TOOLS=(
-  "nmap"
-  "wireshark"
-  "john"
-  "aircrack-ng"
-  "nikto"
-  "hydra"
-  "sqlmap"
-  "netcat"
-  "dnsrecon"
-  "metasploit-framework"
-  "zaproxy"
-  "burpsuite"
-  "exploitdb"
-  "veil"
-  "hashcat"
-  "wpscan"
-  "gobuster"
-  "dirb"
-  "feroxbuster"
-  "set"      # Social-Engineer Toolkit
-  "ettercap-graphical"
-  "maltego"
-  "openvas"
+APT_TOOLS=(
+  "nmap"          # Network scanning
+  "wireshark"     # Packet analyzer
+  "john"          # Password cracker
+  "aircrack-ng"   # Wireless security
+  "nikto"         # Web server scanner
+  "hydra"         # Login brute-forcer
+  "sqlmap"        # SQL injection tool
+  "netcat"        # Networking utility
+  "dnsrecon"      # DNS enumeration
+  "hashcat"       # Password recovery
+  "wpscan"        # WordPress scanner
+  "gobuster"      # Directory brute-forcing
+  "feroxbuster"   # Web directory brute-forcing
+  "dirb"          # Directory brute-forcing
+  "curl"          # Command-line HTTP client
+  "tcpdump"       # Packet capture
+  "zsh"           # Shell (optional but useful)
+  "vlc"           # Media player for analysis
 )
 
-# Detect package manager
-if command -v apt &> /dev/null; then
-  PM="apt"
-  UPDATE_CMD="sudo apt update && sudo apt upgrade -y"
-  INSTALL_CMD="sudo apt install -y"
-elif command -v dnf &> /dev/null; then
-  PM="dnf"
-  UPDATE_CMD="sudo dnf update -y"
-  INSTALL_CMD="sudo dnf install -y"
-elif command -v pacman &> /dev/null; then
-  PM="pacman"
-  UPDATE_CMD="sudo pacman -Syu"
-  INSTALL_CMD="sudo pacman -S --noconfirm"
-else
-  echo "Unsupported package manager. Please use a Linux distribution with apt, dnf, or pacman."
-  exit 1
-fi
+SNAP_TOOLS=(
+  "zaproxy --classic"   # OWASP ZAP
+)
 
-echo "[+] Detected package manager: $PM"
+GIT_TOOLS=(
+  "https://github.com/offensive-security/exploitdb.git /opt/exploitdb"  # Exploit-DB
+  "https://github.com/Veil-Framework/Veil.git /opt/Veil"               # Veil Framework
+  "https://github.com/trustedsec/social-engineer-toolkit.git /opt/set" # Social-Engineer Toolkit
+)
 
-# Update and upgrade the system
-echo "[+] Updating the system..."
-eval $UPDATE_CMD
+echo "[+] Updating and upgrading system..."
+sudo apt update && sudo apt upgrade -y
 
-# Install tools
-echo "[+] Installing cybersecurity tools..."
-for tool in "${TOOLS[@]}"; do
+echo "[+] Installing tools via APT..."
+for tool in "${APT_TOOLS[@]}"; do
   echo "[+] Installing $tool..."
-  eval $INSTALL_CMD $tool || echo "[!] Failed to install $tool. Please check manually."
+  sudo apt install -y $tool
 done
 
-# Post-installation steps for specific tools
-echo "[+] Performing post-installation steps for specific tools..."
+echo "[+] Installing tools via Snap..."
+for tool in "${SNAP_TOOLS[@]}"; do
+  echo "[+] Installing $tool..."
+  sudo snap install $tool
+done
 
-# Metasploit Framework
-if ! command -v msfconsole &> /dev/null; then
-  echo "[+] Installing Metasploit Framework..."
-  curl https://raw.githubusercontent.com/rapid7/metasploit-framework/master/msfinstall | sudo bash
-  echo "[+] Metasploit installed."
-else
-  echo "[+] Metasploit already installed."
-fi
-
-# Exploit-DB
-if [ ! -d "/opt/exploitdb" ]; then
-  echo "[+] Cloning Exploit-DB..."
-  sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
-  sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
-  echo "[+] Exploit-DB installed."
-else
-  echo "[+] Exploit-DB already present."
-fi
-
-# Veil Framework
-if [ ! -d "/opt/Veil" ]; then
-  echo "[+] Installing Veil Framework..."
-  sudo git clone https://github.com/Veil-Framework/Veil.git /opt/Veil
-  cd /opt/Veil
-  sudo ./Install.sh --silent
-  cd -
-  echo "[+] Veil Framework installed."
-else
-  echo "[+] Veil Framework already present."
-fi
-
-# OWASP ZAP
-if ! command -v zaproxy &> /dev/null; then
-  echo "[+] Installing OWASP ZAP..."
-  if [ "$PM" == "apt" ]; then
-    sudo snap install zaproxy --classic
-  elif [ "$PM" == "dnf" ] || [ "$PM" == "pacman" ]; then
-    echo "[!] Please install OWASP ZAP manually as snap may not be supported."
+echo "[+] Cloning tools from GitHub..."
+for git_tool in "${GIT_TOOLS[@]}"; do
+  repo=$(echo $git_tool | awk '{print $1}')
+  path=$(echo $git_tool | awk '{print $2}')
+  if [ ! -d "$path" ]; then
+    echo "[+] Cloning $repo..."
+    sudo git clone "$repo" "$path"
+  else
+    echo "[+] $repo already cloned."
   fi
-  echo "[+] OWASP ZAP installed."
+done
+
+echo "[+] Setting up Metasploit Framework..."
+if ! command -v msfconsole &> /dev/null; then
+  curl https://raw.githubusercontent.com/rapid7/metasploit-framework/master/msfinstall | sudo bash
 else
-  echo "[+] OWASP ZAP already installed."
+  echo "[+] Metasploit is already installed."
 fi
 
-echo "[+] All tools installation complete! Check $LOGFILE for details."
+echo "[+] Downloading Burp Suite Community Edition..."
+if ! command -v burpsuite &> /dev/null; then
+  wget -O burpsuite.sh "https://portswigger.net/burp/releases/download?product=community&version=latest&type=Linux"
+  chmod +x burpsuite.sh
+  echo "[!] Run ./burpsuite.sh to complete Burp Suite installation (GUI installer)."
+else
+  echo "[+] Burp Suite already installed."
+fi
+
+echo "[+] Installing Python packages for additional tools..."
+sudo apt install -y python3-pip
+pip3 install --upgrade pip
+pip3 install xsrfprobe wfuzz
+
+echo "[+] Configuring Exploit-DB..."
+if [ -d "/opt/exploitdb" ]; then
+  sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+fi
+
+echo "[+] Setting up Veil Framework..."
+if [ -d "/opt/Veil" ]; then
+  cd /opt/Veil
+  sudo ./Install.sh --silent || echo "[!] Veil installation needs manual review."
+  cd -
+fi
+
+echo "[+] Setting up Social-Engineer Toolkit (SET)..."
+if [ -d "/opt/set" ]; then
+  cd /opt/set
+  sudo ./setup.py install
+  cd -
+fi
+
+echo "[+] Cybersecurity tools installation complete!"
