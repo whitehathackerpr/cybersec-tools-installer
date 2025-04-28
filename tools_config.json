@@ -3,253 +3,253 @@
         "apt": {
             "nmap": {
                 "description": "Network scanner for security and port scanning",
-                "version": "latest",
-                "dependencies": []
+                "version": "7.94+dfsg1-1",
+                "dependencies": ["libpcap0.8", "libssl3"]
             },
             "masscan": {
                 "description": "Mass IP port scanner",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.3.2+ds-2",
+                "dependencies": ["libpcap0.8"]
             },
             "netdiscover": {
                 "description": "Network address discovery tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "0.10-1",
+                "dependencies": ["libpcap0.8"]
             },
             "dnsenum": {
                 "description": "DNS enumeration tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.3.0-1",
+                "dependencies": ["perl", "libnet-dns-perl"]
             },
             "whatweb": {
                 "description": "Web scanner that identifies web technologies",
-                "version": "latest",
-                "dependencies": []
+                "version": "0.5.5-3",
+                "dependencies": ["ruby", "ruby-dev"]
             },
             "amass": {
                 "description": "In-depth attack surface mapping and asset discovery",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.23.3",
+                "dependencies": ["golang-go"]
             },
             "nikto": {
                 "description": "Web server scanner",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.5.0-1",
+                "dependencies": ["perl", "libnet-ssleay-perl"]
             },
             "wpscan": {
                 "description": "WordPress vulnerability scanner",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.8.22",
+                "dependencies": ["ruby", "ruby-dev"]
             },
             "lynis": {
                 "description": "Security auditing tool for Unix/Linux systems",
-                "version": "latest",
+                "version": "3.0.8",
                 "dependencies": []
             },
             "nuclei": {
                 "description": "Vulnerability scanner based on templates",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.1.1",
+                "dependencies": ["golang-go"]
             },
             "burpsuite": {
                 "description": "Web application security testing tool",
                 "version": "2023.12.1",
-                "dependencies": ["java"]
+                "dependencies": ["java", "openjdk-17-jre"]
             },
             "owasp-zap": {
                 "description": "OWASP Zed Attack Proxy for web security testing",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.14.0",
+                "dependencies": ["java", "openjdk-17-jre"]
             },
             "sqlmap": {
                 "description": "Automatic SQL injection and database takeover tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.7.7",
+                "dependencies": ["python3", "python3-pip"]
             },
             "gobuster": {
                 "description": "Directory/file & DNS busting tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.5",
+                "dependencies": ["golang-go"]
             },
             "dirb": {
                 "description": "Web content scanner",
-                "version": "latest",
+                "version": "2.22",
                 "dependencies": []
             },
             "ffuf": {
                 "description": "Fast web fuzzer",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.1.0",
+                "dependencies": ["golang-go"]
             },
             "hydra": {
                 "description": "Network logon cracker",
-                "version": "latest",
-                "dependencies": []
+                "version": "9.5",
+                "dependencies": ["libssl-dev"]
             },
             "john": {
                 "description": "Password cracker",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.9.0",
+                "dependencies": ["libssl-dev"]
             },
             "hashcat": {
                 "description": "Advanced password recovery",
-                "version": "latest",
-                "dependencies": []
+                "version": "6.2.6",
+                "dependencies": ["ocl-icd-opencl-dev"]
             },
             "aircrack-ng": {
                 "description": "Wireless network security suite",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.7",
+                "dependencies": ["libpcap0.8", "libssl-dev"]
             },
             "wifite": {
                 "description": "Automated wireless attack tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.5.6",
+                "dependencies": ["python3", "python3-pip"]
             },
             "reaver": {
                 "description": "WPS PIN recovery tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.6.6",
+                "dependencies": ["libpcap0.8"]
             },
             "kismet": {
                 "description": "Wireless network detector, sniffer, and IDS",
-                "version": "latest",
-                "dependencies": []
+                "version": "2023-07-R1",
+                "dependencies": ["libpcap0.8", "libssl-dev"]
             },
             "metasploit-framework": {
                 "description": "Penetration testing framework",
-                "version": "latest",
-                "dependencies": []
+                "version": "6.3.29",
+                "dependencies": ["ruby", "ruby-dev", "postgresql"]
             },
             "wireshark": {
                 "description": "Network protocol analyzer",
-                "version": "latest",
-                "dependencies": []
+                "version": "4.0.6",
+                "dependencies": ["libpcap0.8", "libssl3"]
             },
             "ettercap-graphical": {
                 "description": "Network security tool for MITM attacks",
-                "version": "latest",
-                "dependencies": []
+                "version": "0.8.3.1",
+                "dependencies": ["libpcap0.8", "libssl-dev"]
             },
             "bettercap": {
                 "description": "Swiss army knife for network attacks and monitoring",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.32",
+                "dependencies": ["golang-go"]
             },
             "responder": {
                 "description": "LLMNR, NBT-NS and MDNS poisoner",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.1.3.0",
+                "dependencies": ["python3", "python3-pip"]
             },
             "mitmproxy": {
                 "description": "Interactive TLS-capable intercepting HTTP proxy",
-                "version": "latest",
-                "dependencies": []
+                "version": "10.2.2",
+                "dependencies": ["python3", "python3-pip"]
             },
             "crackmapexec": {
                 "description": "Swiss army knife for pentesting networks",
-                "version": "latest",
-                "dependencies": []
+                "version": "5.7.0",
+                "dependencies": ["python3", "python3-pip"]
             },
             "autopsy": {
                 "description": "Digital forensics platform",
-                "version": "latest",
-                "dependencies": []
+                "version": "4.19.1",
+                "dependencies": ["java", "openjdk-17-jre"]
             },
             "sleuthkit": {
                 "description": "Forensic toolkit",
-                "version": "latest",
+                "version": "4.12.1",
                 "dependencies": []
             },
             "foremost": {
                 "description": "File carving tool",
-                "version": "latest",
+                "version": "1.5.7",
                 "dependencies": []
             },
             "binwalk": {
                 "description": "Firmware analysis tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.3.3",
+                "dependencies": ["python3", "python3-pip"]
             },
             "volatility": {
                 "description": "Memory forensics framework",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.0.1",
+                "dependencies": ["python3", "python3-pip"]
             },
             "set": {
                 "description": "Social Engineering Toolkit",
-                "version": "latest",
-                "dependencies": []
+                "version": "8.0.4",
+                "dependencies": ["python3", "python3-pip"]
             },
             "eyewitness": {
                 "description": "Web screenshot utility",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.3.5",
+                "dependencies": ["python3", "python3-pip"]
             },
             "netcat": {
                 "description": "Networking utility for reading/writing network connections",
-                "version": "latest",
+                "version": "1.219-1",
                 "dependencies": []
             },
             "tcpdump": {
                 "description": "Network packet analyzer",
-                "version": "latest",
-                "dependencies": []
+                "version": "4.99.3",
+                "dependencies": ["libpcap0.8"]
             },
             "hping3": {
                 "description": "Network tool for security testing",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.0.0",
+                "dependencies": ["libpcap0.8"]
             },
             "snort": {
                 "description": "Network intrusion detection system",
-                "version": "latest",
-                "dependencies": []
+                "version": "2.9.20",
+                "dependencies": ["libpcap0.8", "libssl-dev"]
             },
             "yersinia": {
                 "description": "Network security testing tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "0.8.3",
+                "dependencies": ["libpcap0.8", "libssl-dev"]
             },
             "macchanger": {
                 "description": "MAC address changer",
-                "version": "latest",
+                "version": "1.7.0",
                 "dependencies": []
             },
             "golismero": {
                 "description": "Open source security testing framework",
-                "version": "latest",
-                "dependencies": ["python3-pip"]
+                "version": "3.0",
+                "dependencies": ["python3", "python3-pip"]
             },
             "commix": {
                 "description": "Automated command injection tool",
-                "version": "latest",
-                "dependencies": ["python3-pip"]
+                "version": "3.8",
+                "dependencies": ["python3", "python3-pip"]
             },
             "wapiti": {
                 "description": "Web application vulnerability scanner",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.1.6",
+                "dependencies": ["python3", "python3-pip"]
             },
             "wafw00f": {
                 "description": "Web Application Firewall detection tool",
-                "version": "latest",
-                "dependencies": ["python3-pip"]
+                "version": "2.2.0",
+                "dependencies": ["python3", "python3-pip"]
             },
             "sslyze": {
                 "description": "SSL/TLS configuration analyzer",
-                "version": "latest",
-                "dependencies": ["python3-pip"]
+                "version": "5.1.0",
+                "dependencies": ["python3", "python3-pip"]
             },
             "testssl.sh": {
                 "description": "TLS/SSL encryption testing tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "3.1",
+                "dependencies": ["openssl"]
             },
             "bully": {
                 "description": "WPS brute force attack tool",
-                "version": "latest",
-                "dependencies": []
+                "version": "1.4",
+                "dependencies": ["libpcap0.8"]
             },
             "pixiewps": {
                 "description": "WPS PIN recovery tool",
