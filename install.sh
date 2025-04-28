@@ -129,6 +129,15 @@ fi
 echo "[+] Installing Python tools..."
 pip3 install xsrfprobe wfuzz crackmapexec impacket-scripts
 
+# Netcat installation (fix)
+echo "[+] Installing netcat..."
+if ! dpkg -l | grep -qw netcat; then
+  sudo apt install -y netcat-openbsd || sudo apt install -y netcat-traditional
+  echo "[+] Netcat installed."
+else
+  echo "[+] Netcat already installed."
+fi
+
 echo "[+] All tools installed successfully!"
 echo "=============================="
 echo " Installation Complete!"
