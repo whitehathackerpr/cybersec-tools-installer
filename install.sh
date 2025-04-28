@@ -1,78 +1,65 @@
 #!/bin/bash
 
-# Enhanced CyberSec Tools Installer
-# Installs common cybersecurity tools across Linux distributions
-# Run as root or with sudo privileges.
+# Complete Cybersecurity Tools Installer for Ubuntu
+# Installs tools for penetration testing, forensics, and cybersecurity tasks.
 
 set -e
 
-APT_TOOLS=(
-  "nmap"          # Network scanning
-  "wireshark"     # Packet analyzer
-  "john"          # Password cracker
-  "aircrack-ng"   # Wireless security
-  "nikto"         # Web server scanner
-  "hydra"         # Login brute-forcer
-  "sqlmap"        # SQL injection tool
-  "netcat"        # Networking utility
-  "dnsrecon"      # DNS enumeration
-  "hashcat"       # Password recovery
-  "wpscan"        # WordPress scanner
-  "gobuster"      # Directory brute-forcing
-  "feroxbuster"   # Web directory brute-forcing
-  "dirb"          # Directory brute-forcing
-  "curl"          # Command-line HTTP client
-  "tcpdump"       # Packet capture
-  "zsh"           # Shell (optional but useful)
-  "vlc"           # Media player for analysis
+# Categories and their tools
+declare -A TOOLS=(
+  ["Information Gathering"]="nmap masscan netdiscover theharvester dnsenum dmitry whatweb amass"
+  ["Vulnerability Analysis & Scanning"]="nikto wpscan lynis nuclei"
+  ["Web Application Testing"]="burpsuite owasp-zap sqlmap gobuster dirb ffuf"
+  ["Password Attacks"]="hydra john hashcat medusa crunch seclists"
+  ["Wireless Attacks"]="aircrack-ng wifite reaver kismet fern-wifi-cracker"
+  ["Exploitation Tools"]="metasploit-framework armitage exploitdb veil beef-xss"
+  ["Sniffing & Spoofing"]="wireshark ettercap-graphical bettercap responder mitmproxy"
+  ["Post-Exploitation"]="mimikatz crackmapexec powersploit empire"
+  ["Forensics"]="autopsy sleuthkit foremost binwalk volatility"
+  ["Reporting & Social Engineering"]="set eyewitness"
+  ["Other Essentials"]="netcat tcpdump hping3 snort yersinia macchanger"
 )
 
-SNAP_TOOLS=(
-  "zaproxy --classic"   # OWASP ZAP
-)
+# Banner
+echo "=============================="
+echo " Complete CyberSec Installer"
+echo "=============================="
+echo "[+] Installing tools for cybersecurity and penetration testing."
 
-GIT_TOOLS=(
-  "https://github.com/offensive-security/exploitdb.git /opt/exploitdb"  # Exploit-DB
-  "https://github.com/Veil-Framework/Veil.git /opt/Veil"               # Veil Framework
-  "https://github.com/trustedsec/social-engineer-toolkit.git /opt/set" # Social-Engineer Toolkit
-)
-
-echo "[+] Updating and upgrading system..."
+# Update and upgrade the system
+echo "[+] Updating system..."
 sudo apt update && sudo apt upgrade -y
 
-echo "[+] Installing tools via APT..."
-for tool in "${APT_TOOLS[@]}"; do
-  echo "[+] Installing $tool..."
-  sudo apt install -y $tool
+# Function to install tools via apt
+install_tools() {
+  local category=$1
+  local tools=$2
+  echo "[+] Installing $category tools..."
+  for tool in $tools; do
+    echo "[+] Installing $tool..."
+    sudo apt install -y $tool || echo "[!] Failed to install $tool. Check for issues."
+  done
+}
+
+# Install tools for each category
+for category in "${!TOOLS[@]}"; do
+  install_tools "$category" "${TOOLS[$category]}"
 done
 
-echo "[+] Installing tools via Snap..."
-for tool in "${SNAP_TOOLS[@]}"; do
-  echo "[+] Installing $tool..."
-  sudo snap install $tool
-done
+# Additional tools not in APT repository
+echo "[+] Installing additional tools..."
 
-echo "[+] Cloning tools from GitHub..."
-for git_tool in "${GIT_TOOLS[@]}"; do
-  repo=$(echo $git_tool | awk '{print $1}')
-  path=$(echo $git_tool | awk '{print $2}')
-  if [ ! -d "$path" ]; then
-    echo "[+] Cloning $repo..."
-    sudo git clone "$repo" "$path"
-  else
-    echo "[+] $repo already cloned."
-  fi
-done
-
-echo "[+] Setting up Metasploit Framework..."
+# Metasploit Framework
 if ! command -v msfconsole &> /dev/null; then
+  echo "[+] Installing Metasploit Framework..."
   curl https://raw.githubusercontent.com/rapid7/metasploit-framework/master/msfinstall | sudo bash
 else
   echo "[+] Metasploit is already installed."
 fi
 
-echo "[+] Downloading Burp Suite Community Edition..."
+# Burp Suite
 if ! command -v burpsuite &> /dev/null; then
+  echo "[+] Downloading Burp Suite Community Edition..."
   wget -O burpsuite.sh "https://portswigger.net/burp/releases/download?product=community&version=latest&type=Linux"
   chmod +x burpsuite.sh
   echo "[!] Run ./burpsuite.sh to complete Burp Suite installation (GUI installer)."
@@ -80,28 +67,69 @@ else
   echo "[+] Burp Suite already installed."
 fi
 
-echo "[+] Installing Python packages for additional tools..."
-sudo apt install -y python3-pip
-pip3 install --upgrade pip
-pip3 install xsrfprobe wfuzz
+# OWASP ZAP
+if ! command -v zaproxy &> /dev/null; then
+  echo "[+] Installing OWASP ZAP..."
+  sudo snap install zaproxy --classic
+else
+  echo "[+] OWASP ZAP already installed."
+fi
 
-echo "[+] Configuring Exploit-DB..."
-if [ -d "/opt/exploitdb" ]; then
+# Exploit-DB
+if [ ! -d "/opt/exploitdb" ]; then
+  echo "[+] Cloning Exploit-DB..."
+  sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
   sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+else
+  echo "[+] Exploit-DB already present."
 fi
 
-echo "[+] Setting up Veil Framework..."
-if [ -d "/opt/Veil" ]; then
+# Veil Framework
+if [ ! -d "/opt/Veil" ]; then
+  echo "[+] Cloning and installing Veil Framework..."
+  sudo git clone https://github.com/Veil-Framework/Veil.git /opt/Veil
   cd /opt/Veil
-  sudo ./Install.sh --silent || echo "[!] Veil installation needs manual review."
+  sudo ./Install.sh --silent || echo "[!] Veil installation may need manual intervention."
   cd -
+else
+  echo "[+] Veil Framework already present."
 fi
 
-echo "[+] Setting up Social-Engineer Toolkit (SET)..."
-if [ -d "/opt/set" ]; then
+# Social-Engineer Toolkit (SET)
+if [ ! -d "/opt/set" ]; then
+  echo "[+] Installing Social-Engineer Toolkit..."
+  sudo git clone https://github.com/trustedsec/social-engineer-toolkit.git /opt/set
   cd /opt/set
   sudo ./setup.py install
   cd -
+else
+  echo "[+] Social-Engineer Toolkit already present."
 fi
 
-echo "[+] Cybersecurity tools installation complete!"
+# Beef-XSS
+if [ ! -d "/opt/beef" ]; then
+  echo "[+] Installing Beef-XSS..."
+  sudo git clone https://github.com/beefproject/beef.git /opt/beef
+  cd /opt/beef
+  ./install
+  cd -
+else
+  echo "[+] Beef-XSS already present."
+fi
+
+# Autopsy
+if ! command -v autopsy &> /dev/null; then
+  echo "[+] Installing Autopsy..."
+  sudo apt install -y sleuthkit autopsy
+else
+  echo "[+] Autopsy already installed."
+fi
+
+# Python tools
+echo "[+] Installing Python tools..."
+pip3 install xsrfprobe wfuzz crackmapexec impacket-scripts
+
+echo "[+] All tools installed successfully!"
+echo "=============================="
+echo " Installation Complete!"
+echo "=============================="
