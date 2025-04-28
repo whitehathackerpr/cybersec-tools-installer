@@ -26,10 +26,8 @@ The `install.sh` script installs the following tools:
 Run the following command to download and execute the installer (requires `curl` and `bash`):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/cybersec-tools-installer/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/whitehathackerpr/cybersec-tools-installer/main/install.sh | bash
 ```
-
-> **Note:** Replace `YOUR_GITHUB_USERNAME` with your actual GitHub username or the repository owner's username after uploading.
 
 Some tools (like Burp Suite) may require manual steps or GUI interaction during installation. Please follow any on-screen instructions.
 
@@ -40,7 +38,7 @@ Contributions are welcome! To contribute:
 1. **Fork** this repository on GitHub.
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/cybersec-tools-installer.git
+   git clone https://github.com/whitehathackerpr/cybersec-tools-installer.git
    ```
 3. **Create a new branch** for your feature or fix:
    ```bash
@@ -60,11 +58,15 @@ Feel free to suggest new tools, improvements, or bug fixes!
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/cybersec-tools-installer.git
+   git remote add origin https://github.com/whitehathackerpr/cybersec-tools-installer.git
    git push -u origin main
    ```
-3. Update the one-liner in this README with your GitHub username.
+3. The one-liner in this README is already set up for your repository.
 
 ---
 
-**Disclaimer:** Use these tools responsibly and only on systems you own or have explicit permission to test. Unauthorized use is illegal and unethical. 
+**Disclaimer:** Use these tools responsibly and only on systems you own or have explicit permission to test. Unauthorized use is illegal and unethical.
+
+---
+
+[GitHub Repository](https://github.com/whitehathackerpr/cybersec-tools-installer) 
