@@ -13,7 +13,6 @@ TOOLS=(
   "nmap"
   "masscan"
   "netdiscover"
-  "theharvester"
   "dnsenum"
   "dmitry"
   "whatweb"
@@ -129,6 +128,19 @@ if [ ! -d "/opt/Veil" ]; then
   echo "[+] Veil Framework installed."
 else
   echo "[+] Veil Framework already present."
+fi
+
+# TheHarvester installation (GitHub)
+if ! command -v theharvester &> /dev/null; then
+  echo "[+] Installing TheHarvester..."
+  sudo apt install -y python3-pip
+  git clone https://github.com/laramies/theHarvester.git /opt/theHarvester
+  cd /opt/theHarvester
+  sudo pip3 install -r requirements.txt
+  cd -
+  echo "[+] TheHarvester installed."
+else
+  echo "[+] TheHarvester already installed."
 fi
 
 echo "[+] All tools installation complete!"
