@@ -1,11 +1,20 @@
 #!/bin/bash
 
-# CyberSec Tools Installer
-# This script installs top cybersecurity and penetration testing tools on Ubuntu.
+# Universal CyberSec Tools Installer
+# This script installs common cybersecurity and penetration testing tools on any Linux distribution.
 # Run as root or with sudo privileges.
 
 set -e
 
+LOGFILE="cybersec_install.log"
+exec > >(tee -a $LOGFILE) 2>&1
+
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root or use sudo."
+  exit 1
+fi
+
+# List of tools commonly found in Kali Linux
 TOOLS=(
   "nmap"
   "wireshark"
@@ -16,17 +25,55 @@ TOOLS=(
   "sqlmap"
   "netcat"
   "dnsrecon"
+  "metasploit-framework"
+  "zaproxy"
+  "burpsuite"
+  "exploitdb"
+  "veil"
+  "hashcat"
+  "wpscan"
+  "gobuster"
+  "dirb"
+  "feroxbuster"
+  "set"      # Social-Engineer Toolkit
+  "ettercap-graphical"
+  "maltego"
+  "openvas"
 )
 
-# Update and upgrade system
-sudo apt update && sudo apt upgrade -y
+# Detect package manager
+if command -v apt &> /dev/null; then
+  PM="apt"
+  UPDATE_CMD="sudo apt update && sudo apt upgrade -y"
+  INSTALL_CMD="sudo apt install -y"
+elif command -v dnf &> /dev/null; then
+  PM="dnf"
+  UPDATE_CMD="sudo dnf update -y"
+  INSTALL_CMD="sudo dnf install -y"
+elif command -v pacman &> /dev/null; then
+  PM="pacman"
+  UPDATE_CMD="sudo pacman -Syu"
+  INSTALL_CMD="sudo pacman -S --noconfirm"
+else
+  echo "Unsupported package manager. Please use a Linux distribution with apt, dnf, or pacman."
+  exit 1
+fi
 
-echo "[+] Installing tools from apt..."
+echo "[+] Detected package manager: $PM"
+
+# Update and upgrade the system
+echo "[+] Updating the system..."
+eval $UPDATE_CMD
+
+# Install tools
+echo "[+] Installing cybersecurity tools..."
 for tool in "${TOOLS[@]}"; do
   echo "[+] Installing $tool..."
-  sudo apt install -y $tool
-  echo "[+] $tool installed."
+  eval $INSTALL_CMD $tool || echo "[!] Failed to install $tool. Please check manually."
 done
+
+# Post-installation steps for specific tools
+echo "[+] Performing post-installation steps for specific tools..."
 
 # Metasploit Framework
 if ! command -v msfconsole &> /dev/null; then
@@ -35,25 +82,6 @@ if ! command -v msfconsole &> /dev/null; then
   echo "[+] Metasploit installed."
 else
   echo "[+] Metasploit already installed."
-fi
-
-# Burp Suite (Community Edition)
-if ! command -v burpsuite &> /dev/null; then
-  echo "[+] Downloading Burp Suite Community Edition..."
-  wget -O burpsuite.sh "https://portswigger.net/burp/releases/download?product=community&version=2023.12.1&type=Linux"
-  chmod +x burpsuite.sh
-  echo "[!] Please run ./burpsuite.sh to complete Burp Suite installation (GUI installer)."
-else
-  echo "[+] Burp Suite already installed or previously downloaded."
-fi
-
-# OWASP ZAP
-if ! command -v zaproxy &> /dev/null; then
-  echo "[+] Installing OWASP ZAP..."
-  sudo snap install zaproxy --classic
-  echo "[+] OWASP ZAP installed."
-else
-  echo "[+] OWASP ZAP already installed."
 fi
 
 # Exploit-DB
@@ -69,8 +97,7 @@ fi
 # Veil Framework
 if [ ! -d "/opt/Veil" ]; then
   echo "[+] Installing Veil Framework..."
-  sudo apt install -y git
-  git clone https://github.com/Veil-Framework/Veil.git /opt/Veil
+  sudo git clone https://github.com/Veil-Framework/Veil.git /opt/Veil
   cd /opt/Veil
   sudo ./Install.sh --silent
   cd -
@@ -79,4 +106,17 @@ else
   echo "[+] Veil Framework already present."
 fi
 
-echo "[+] All tools installation complete!" 
+# OWASP ZAP
+if ! command -v zaproxy &> /dev/null; then
+  echo "[+] Installing OWASP ZAP..."
+  if [ "$PM" == "apt" ]; then
+    sudo snap install zaproxy --classic
+  elif [ "$PM" == "dnf" ] || [ "$PM" == "pacman" ]; then
+    echo "[!] Please install OWASP ZAP manually as snap may not be supported."
+  fi
+  echo "[+] OWASP ZAP installed."
+else
+  echo "[+] OWASP ZAP already installed."
+fi
+
+echo "[+] All tools installation complete! Check $LOGFILE for details."
