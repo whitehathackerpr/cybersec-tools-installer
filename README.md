@@ -1,71 +1,131 @@
 # CyberSec Tools Installer
 
-Automate the installation of the best cybersecurity and penetration testing tools on Ubuntu with a single script. This project is designed for security professionals, students, and enthusiasts who want a quick, reliable way to set up a powerful pentesting environment.
+A comprehensive installer for cybersecurity and penetration testing tools on Ubuntu. This project provides a streamlined way to set up a powerful pentesting environment with a single command.
 
-## Tools Included
+## Features
 
-The `install.sh` script installs the following tools:
+- **One-Click Installation**: Install all tools with a single command
+- **Progress Tracking**: Visual progress bar and detailed logging
+- **Error Handling**: Robust error handling and logging
+- **Tool Verification**: Automatic verification of installed tools
+- **Configuration Management**: Version control and dependency management
+- **Comprehensive Toolset**: Over 50+ security tools across different categories
 
-- **Nmap** – Network scanner
-- **Metasploit Framework** – Exploitation framework
-- **Wireshark** – Network protocol analyzer
-- **John the Ripper** – Password cracker
-- **Burp Suite (Community Edition)** – Web vulnerability scanner
-- **OWASP ZAP** – Web application security scanner
-- **Aircrack-ng** – Wireless network security
-- **Nikto** – Web server scanner
-- **Hydra** – Network logon cracker
-- **SQLMap** – Automated SQL injection tool
-- **Netcat** – Networking utility
-- **DNSRecon** – DNS enumeration
-- **Exploit-DB** – Exploit database and search tool
-- **Veil Framework** – Payload generation framework
+## Tool Categories
+
+### Network Analysis & Scanning
+- **Nmap** - Network scanner
+- **Masscan** - Mass IP port scanner
+- **Netdiscover** - Network address discovery
+- **Wireshark** - Network protocol analyzer
+- **Tcpdump** - Network packet analyzer
+- **Hping3** - Network security testing
+- **Snort** - Network intrusion detection
+
+### Web Security
+- **Burp Suite** - Web application security testing
+- **OWASP ZAP** - Web application security scanner
+- **Nikto** - Web server scanner
+- **SQLMap** - Automated SQL injection
+- **Gobuster** - Directory/file & DNS busting
+- **FFuf** - Fast web fuzzer
+- **WPScan** - WordPress vulnerability scanner
+
+### Wireless Security
+- **Aircrack-ng** - Wireless network security suite
+- **Wifite** - Automated wireless attack tool
+- **Reaver** - WPS PIN recovery
+- **Kismet** - Wireless network detector
+- **Fern-wifi-cracker** - Wireless security auditing
+
+### Password Cracking
+- **John the Ripper** - Password cracker
+- **Hashcat** - Advanced password recovery
+- **Hydra** - Network logon cracker
+- **Hash-Identifier** - Hash type identification
+- **RainbowCrack** - Password cracking with rainbow tables
+
+### Exploitation
+- **Metasploit Framework** - Exploitation framework
+- **Exploit-DB** - Exploit database
+- **Veil Framework** - Payload generation
+- **SET** - Social Engineering Toolkit
+
+### Forensics
+- **Autopsy** - Digital forensics platform
+- **SleuthKit** - Forensic toolkit
+- **Foremost** - File carving
+- **Binwalk** - Firmware analysis
+- **Volatility** - Memory forensics
+
+### OSINT & Reconnaissance
+- **TheHarvester** - Email/subdomain harvesting
+- **Sublist3r** - Subdomain enumeration
+- **Aquatone** - Website visualization
+- **Maltego** - OSINT application
+- **SpiderFoot** - OSINT automation
+- **Recon-ng** - Web reconnaissance framework
 
 ## Quick Start
 
-Run the following command to download and execute the installer (requires `curl` and `bash`):
+1. **Download the installer**:
+   ```bash
+   curl -sSL https://raw.githubusercontent.com/whitehathackerpr/cybersec-tools-installer/main/install.sh | bash
+   ```
 
-```bash
-curl -sSL https://raw.githubusercontent.com/whitehathackerpr/cybersec-tools-installer/main/install.sh | bash
-```
+2. **Or clone and run locally**:
+   ```bash
+   git clone https://github.com/whitehathackerpr/cybersec-tools-installer.git
+   cd cybersec-tools-installer
+   chmod +x install.sh
+   ./install.sh
+   ```
 
-Some tools (like Burp Suite) may require manual steps or GUI interaction during installation. Please follow any on-screen instructions.
+## Installation Process
+
+1. The script will first update your system packages
+2. Install all tools from the Ubuntu repositories
+3. Install additional tools from GitHub
+4. Configure necessary dependencies
+5. Verify installations
+6. Generate a detailed installation log
+
+## Configuration
+
+The `tools_config.json` file contains:
+- Tool versions
+- Dependencies
+- Installation methods
+- Descriptions
+
+You can modify this file to:
+- Change tool versions
+- Add/remove tools
+- Modify dependencies
+
+## Logging
+
+The installation process creates a detailed log file (`cybersec_install.log`) containing:
+- Installation progress
+- Success/failure status
+- Error messages
+- Tool verification results
 
 ## Contributing
 
-Contributions are welcome! To contribute:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-1. **Fork** this repository on GitHub.
-2. **Clone** your fork:
-   ```bash
-   git clone https://github.com/whitehathackerpr/cybersec-tools-installer.git
-   ```
-3. **Create a new branch** for your feature or fix:
-   ```bash
-   git checkout -b feature-name
-   ```
-4. **Commit** your changes and **push** to your fork.
-5. **Open a Pull Request** describing your changes.
+## License
 
-Feel free to suggest new tools, improvements, or bug fixes!
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## How to Upload to GitHub
+## Disclaimer
 
-1. [Create a new repository](https://github.com/new) named `cybersec-tools-installer` on your GitHub account.
-2. On your local machine, initialize the directory (if not already):
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/whitehathackerpr/cybersec-tools-installer.git
-   git push -u origin main
-   ```
-3. The one-liner in this README is already set up for your repository.
-
----
-
-**Disclaimer:** Use these tools responsibly and only on systems you own or have explicit permission to test. Unauthorized use is illegal and unethical.
+This tool is for educational and authorized security testing purposes only. The developers are not responsible for any misuse or damage caused by this program. Use these tools responsibly and only on systems you own or have explicit permission to test.
 
 ---
 

@@ -1,0 +1,454 @@
+{
+    "tools": {
+        "apt": {
+            "nmap": {
+                "description": "Network scanner for security and port scanning",
+                "version": "latest",
+                "dependencies": []
+            },
+            "masscan": {
+                "description": "Mass IP port scanner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "netdiscover": {
+                "description": "Network address discovery tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "dnsenum": {
+                "description": "DNS enumeration tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "whatweb": {
+                "description": "Web scanner that identifies web technologies",
+                "version": "latest",
+                "dependencies": []
+            },
+            "amass": {
+                "description": "In-depth attack surface mapping and asset discovery",
+                "version": "latest",
+                "dependencies": []
+            },
+            "nikto": {
+                "description": "Web server scanner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "wpscan": {
+                "description": "WordPress vulnerability scanner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "lynis": {
+                "description": "Security auditing tool for Unix/Linux systems",
+                "version": "latest",
+                "dependencies": []
+            },
+            "nuclei": {
+                "description": "Vulnerability scanner based on templates",
+                "version": "latest",
+                "dependencies": []
+            },
+            "burpsuite": {
+                "description": "Web application security testing tool",
+                "version": "2023.12.1",
+                "dependencies": ["java"]
+            },
+            "owasp-zap": {
+                "description": "OWASP Zed Attack Proxy for web security testing",
+                "version": "latest",
+                "dependencies": []
+            },
+            "sqlmap": {
+                "description": "Automatic SQL injection and database takeover tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "gobuster": {
+                "description": "Directory/file & DNS busting tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "dirb": {
+                "description": "Web content scanner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "ffuf": {
+                "description": "Fast web fuzzer",
+                "version": "latest",
+                "dependencies": []
+            },
+            "hydra": {
+                "description": "Network logon cracker",
+                "version": "latest",
+                "dependencies": []
+            },
+            "john": {
+                "description": "Password cracker",
+                "version": "latest",
+                "dependencies": []
+            },
+            "hashcat": {
+                "description": "Advanced password recovery",
+                "version": "latest",
+                "dependencies": []
+            },
+            "aircrack-ng": {
+                "description": "Wireless network security suite",
+                "version": "latest",
+                "dependencies": []
+            },
+            "wifite": {
+                "description": "Automated wireless attack tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "reaver": {
+                "description": "WPS PIN recovery tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "kismet": {
+                "description": "Wireless network detector, sniffer, and IDS",
+                "version": "latest",
+                "dependencies": []
+            },
+            "metasploit-framework": {
+                "description": "Penetration testing framework",
+                "version": "latest",
+                "dependencies": []
+            },
+            "wireshark": {
+                "description": "Network protocol analyzer",
+                "version": "latest",
+                "dependencies": []
+            },
+            "ettercap-graphical": {
+                "description": "Network security tool for MITM attacks",
+                "version": "latest",
+                "dependencies": []
+            },
+            "bettercap": {
+                "description": "Swiss army knife for network attacks and monitoring",
+                "version": "latest",
+                "dependencies": []
+            },
+            "responder": {
+                "description": "LLMNR, NBT-NS and MDNS poisoner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "mitmproxy": {
+                "description": "Interactive TLS-capable intercepting HTTP proxy",
+                "version": "latest",
+                "dependencies": []
+            },
+            "crackmapexec": {
+                "description": "Swiss army knife for pentesting networks",
+                "version": "latest",
+                "dependencies": []
+            },
+            "autopsy": {
+                "description": "Digital forensics platform",
+                "version": "latest",
+                "dependencies": []
+            },
+            "sleuthkit": {
+                "description": "Forensic toolkit",
+                "version": "latest",
+                "dependencies": []
+            },
+            "foremost": {
+                "description": "File carving tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "binwalk": {
+                "description": "Firmware analysis tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "volatility": {
+                "description": "Memory forensics framework",
+                "version": "latest",
+                "dependencies": []
+            },
+            "set": {
+                "description": "Social Engineering Toolkit",
+                "version": "latest",
+                "dependencies": []
+            },
+            "eyewitness": {
+                "description": "Web screenshot utility",
+                "version": "latest",
+                "dependencies": []
+            },
+            "netcat": {
+                "description": "Networking utility for reading/writing network connections",
+                "version": "latest",
+                "dependencies": []
+            },
+            "tcpdump": {
+                "description": "Network packet analyzer",
+                "version": "latest",
+                "dependencies": []
+            },
+            "hping3": {
+                "description": "Network tool for security testing",
+                "version": "latest",
+                "dependencies": []
+            },
+            "snort": {
+                "description": "Network intrusion detection system",
+                "version": "latest",
+                "dependencies": []
+            },
+            "yersinia": {
+                "description": "Network security testing tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "macchanger": {
+                "description": "MAC address changer",
+                "version": "latest",
+                "dependencies": []
+            },
+            "golismero": {
+                "description": "Open source security testing framework",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "commix": {
+                "description": "Automated command injection tool",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "wapiti": {
+                "description": "Web application vulnerability scanner",
+                "version": "latest",
+                "dependencies": []
+            },
+            "wafw00f": {
+                "description": "Web Application Firewall detection tool",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "sslyze": {
+                "description": "SSL/TLS configuration analyzer",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "testssl.sh": {
+                "description": "TLS/SSL encryption testing tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "bully": {
+                "description": "WPS brute force attack tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "pixiewps": {
+                "description": "WPS PIN recovery tool",
+                "version": "latest",
+                "dependencies": []
+            },
+            "wifiphisher": {
+                "description": "Automated phishing attacks against WiFi networks",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "wifite2": {
+                "description": "Wireless network auditing tool",
+                "version": "latest",
+                "dependencies": ["python3-pip"]
+            },
+            "rtlsdr-scanner": {
+                "description": "RF spectrum analyzer",
+                "version": "latest",
+                "dependencies": []
+            },
+            "rtl-433": {
+                "description": "Generic RF data receiver",
+                "version": "latest",
+                "dependencies": []
+            },
+            "gqrx": {
+                "description": "Software defined radio receiver",
+                "version": "latest",
+                "dependencies": []
+            },
+            "sdrangel": {
+                "description": "Software defined radio application",
+                "version": "latest",
+                "dependencies": []
+            },
+            "rtl-sdr": {
+                "description": "Software defined radio hardware support",
+                "version": "latest",
+                "dependencies": []
+            }
+        },
+        "github": {
+            "theHarvester": {
+                "description": "Email, subdomain and people names harvester",
+                "version": "latest",
+                "repository": "laramies/theHarvester",
+                "dependencies": ["python3-pip"]
+            },
+            "sublist3r": {
+                "description": "Fast subdomains enumeration tool",
+                "version": "latest",
+                "repository": "aboul3la/Sublist3r",
+                "dependencies": ["python3-pip"]
+            },
+            "aquatone": {
+                "description": "Visual inspection tool for websites",
+                "version": "latest",
+                "repository": "michenriksen/aquatone",
+                "dependencies": []
+            },
+            "wfuzz": {
+                "description": "Web application fuzzer",
+                "version": "latest",
+                "repository": "xmendez/wfuzz",
+                "dependencies": ["python3-pip"]
+            },
+            "skipfish": {
+                "description": "Web application security scanner",
+                "version": "latest",
+                "repository": "spinkham/skipfish",
+                "dependencies": []
+            },
+            "arachni": {
+                "description": "Web Application Security Scanner Framework",
+                "version": "latest",
+                "repository": "Arachni/arachni",
+                "dependencies": []
+            },
+            "hash-identifier": {
+                "description": "Software to identify the different types of hashes",
+                "version": "latest",
+                "repository": "blackploit/hash-identifier",
+                "dependencies": ["python3"]
+            },
+            "rainbowcrack": {
+                "description": "Password cracker using rainbow tables",
+                "version": "latest",
+                "repository": "freerainbowtables/rainbowcrack",
+                "dependencies": []
+            },
+            "maltego": {
+                "description": "Open source intelligence and forensics application",
+                "version": "latest",
+                "repository": "paterva/maltego",
+                "dependencies": ["java"]
+            },
+            "spiderfoot": {
+                "description": "Open source intelligence automation tool",
+                "version": "latest",
+                "repository": "smicallef/spiderfoot",
+                "dependencies": ["python3-pip"]
+            },
+            "recon-ng": {
+                "description": "Full-featured Web Reconnaissance framework",
+                "version": "latest",
+                "repository": "lanmaster53/recon-ng",
+                "dependencies": ["python3-pip"]
+            },
+            "gophish": {
+                "description": "Open-source phishing toolkit",
+                "version": "latest",
+                "repository": "gophish/gophish",
+                "dependencies": ["go"]
+            },
+            "evilginx2": {
+                "description": "Standalone man-in-the-middle attack framework",
+                "version": "latest",
+                "repository": "kgretzky/evilginx2",
+                "dependencies": ["go"]
+            },
+            "modlishka": {
+                "description": "Flexible and powerful reverse proxy",
+                "version": "latest",
+                "repository": "dreadl0ck/modlishka",
+                "dependencies": ["go"]
+            },
+            "phishery": {
+                "description": "Simple SSL/TLS enabled HTTP server",
+                "version": "latest",
+                "repository": "ryhanson/phishery",
+                "dependencies": ["go"]
+            },
+            "king-phisher": {
+                "description": "Phishing campaign toolkit",
+                "version": "latest",
+                "repository": "securestate/king-phisher",
+                "dependencies": ["python3-pip"]
+            },
+            "phishbot": {
+                "description": "Automated phishing campaign tool",
+                "version": "latest",
+                "repository": "phishbot/phishbot",
+                "dependencies": ["python3-pip"]
+            },
+            "phishcatch": {
+                "description": "Phishing campaign monitoring tool",
+                "version": "latest",
+                "repository": "phishcatch/phishcatch",
+                "dependencies": ["python3-pip"]
+            },
+            "phishdetect": {
+                "description": "Phishing detection tool",
+                "version": "latest",
+                "repository": "phishdetect/phishdetect",
+                "dependencies": ["python3-pip"]
+            },
+            "phishmonger": {
+                "description": "Phishing campaign management tool",
+                "version": "latest",
+                "repository": "phishmonger/phishmonger",
+                "dependencies": ["python3-pip"]
+            },
+            "phishstats": {
+                "description": "Phishing campaign statistics tool",
+                "version": "latest",
+                "repository": "phishstats/phishstats",
+                "dependencies": ["python3-pip"]
+            },
+            "phishviz": {
+                "description": "Phishing campaign visualization tool",
+                "version": "latest",
+                "repository": "phishviz/phishviz",
+                "dependencies": ["python3-pip"]
+            },
+            "phishwatch": {
+                "description": "Phishing campaign monitoring tool",
+                "version": "latest",
+                "repository": "phishwatch/phishwatch",
+                "dependencies": ["python3-pip"]
+            },
+            "phishx": {
+                "description": "Phishing campaign analysis tool",
+                "version": "latest",
+                "repository": "phishx/phishx",
+                "dependencies": ["python3-pip"]
+            },
+            "phishy": {
+                "description": "Phishing campaign automation tool",
+                "version": "latest",
+                "repository": "phishy/phishy",
+                "dependencies": ["python3-pip"]
+            },
+            "phishz": {
+                "description": "Phishing campaign management tool",
+                "version": "latest",
+                "repository": "phishz/phishz",
+                "dependencies": ["python3-pip"]
+            }
+        }
+    }
+} 
