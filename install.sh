@@ -6,8 +6,48 @@
 
 set -e
 
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
 # Use non-interactive frontend to avoid interactive prompts
 export DEBIAN_FRONTEND=noninteractive
+
+# Log file
+LOG_FILE="cybersec_install.log"
+touch $LOG_FILE
+
+# Function to log messages
+log_message() {
+    echo -e "$1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> $LOG_FILE
+}
+
+# Function to check if a tool is installed
+check_tool() {
+    if command -v $1 &> /dev/null; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Function to show progress
+show_progress() {
+    local current=$1
+    local total=$2
+    local width=50
+    local percentage=$((current * 100 / total))
+    local progress=$((current * width / total))
+    
+    printf "\r${BLUE}[${NC}"
+    printf "%-${progress}s" | tr " " "="
+    printf "%-$((width - progress))s" | tr " " " "
+    printf "${BLUE}]${NC} ${percentage}%%"
+}
 
 TOOLS=(
   "nmap"
@@ -67,13 +107,26 @@ TOOLS=(
 )
 
 # Update and upgrade system
+log_message "${BLUE}[*]${NC} Updating system packages..."
 sudo apt update && sudo apt upgrade -y
+log_message "${GREEN}[+]${NC} System update complete"
 
-echo "[+] Installing tools from apt..."
+# Install tools with progress tracking
+total_tools=${#TOOLS[@]}
+current_tool=0
+
+log_message "${BLUE}[*]${NC} Installing tools from apt..."
 for tool in "${TOOLS[@]}"; do
-  echo "[+] Installing $tool..."
-  sudo apt install -y $tool
-  echo "[+] $tool installed."
+    current_tool=$((current_tool + 1))
+    show_progress $current_tool $total_tools
+    log_message "${YELLOW}[*]${NC} Installing $tool..."
+    
+    if ! sudo apt install -y $tool 2>> $LOG_FILE; then
+        log_message "${RED}[-]${NC} Failed to install $tool"
+        continue
+    fi
+    
+    log_message "${GREEN}[+]${NC} $tool installed successfully"
 done
 
 # Preconfigure wireshark to disable non-superuser packet capture (to avoid prompt)
@@ -143,4 +196,7 @@ else
   echo "[+] TheHarvester already installed."
 fi
 
-echo "[+] All tools installation complete!"
+# Final message
+echo -e "\n${GREEN}[+]${NC} Installation complete! Check $LOG_FILE for details"
+echo -e "${BLUE}[*]${NC} Some tools may require additional configuration or manual setup"
+echo -e "${YELLOW}[!]${NC} Please review the log file for any warnings or errors"
