@@ -135,7 +135,9 @@ done
 # Metasploit Framework
 if ! command -v msfconsole &> /dev/null; then
   echo "[+] Installing Metasploit Framework..."
-  curl https://raw.githubusercontent.com/rapid7/metasploit-framework/master/msfinstall | sudo bash
+  curl curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+  chmod 755 msfinstall && \
+  ./msfinstall
   echo "[+] Metasploit installed."
 else
   echo "[+] Metasploit already installed."
