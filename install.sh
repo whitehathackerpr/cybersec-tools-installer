@@ -148,6 +148,7 @@ if ! command -v burpsuite &> /dev/null; then
   echo "[+] Downloading Burp Suite Community Edition..."
   wget -O burpsuite.sh "https://portswigger.net/burp/releases/download?product=community&version=2023.12.1&type=Linux"
   chmod +x burpsuite.sh
+  ./burpsuite.sh
   echo "[!] Please run ./burpsuite.sh to complete Burp Suite installation (GUI installer)."
 else
   echo "[+] Burp Suite already installed or previously downloaded."
