@@ -103,7 +103,7 @@ TOOLS=(
   "hping3"
   "snort"
   "yersinia"
-  "macchanger"
+  #"macchanger"
 )
 
 # Update and upgrade system
