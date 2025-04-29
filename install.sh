@@ -82,7 +82,7 @@ TOOLS=(
   "exploitdb"
   "veil"
   "beef-xss"
-  "wireshark"
+  #"wireshark"
   "ettercap-graphical"
   "bettercap"
   "responder"
@@ -130,7 +130,7 @@ for tool in "${TOOLS[@]}"; do
 done
 
 # Preconfigure wireshark to disable non-superuser packet capture (to avoid prompt)
-echo "wireshark-common wireshark-common/install-setuid boolean false" | sudo debconf-set-selections
+#echo "wireshark-common wireshark-common/install-setuid boolean false" | sudo debconf-set-selections
 
 # Metasploit Framework
 if ! command -v msfconsole &> /dev/null; then
